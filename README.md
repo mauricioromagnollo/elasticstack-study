@@ -2,13 +2,34 @@
 
 ![](./assets/banner.png)
 
-# **Install**
+# **Como Utilizar**
 
-Outras formas de instalar o ElasticSearch, caso você tenha interesse em instalar de outra forma, diferente do que foi feito nesse repositório nos arquivos [Dockerfile](./Dockerfile) e [docker-compose.yml](./docker-compose.yml).
+Iniciar o container do Ubuntu com o Elasticsearch, utilize o comando:
 
-- [Tutorial de Instalação com o Docker](https://www.elastic.co/guide/en/elasticsearch/reference/7.17/docker.html)
+```bash
+make up
+```
 
-# **Configs**
+Para deletar todos os containers, utilize o comando:
+
+```bash
+make down
+```
+
+Para pausar o container sem destruir, utilize o conmando:
+
+```bash
+make stop
+```
+
+Caso você precise "re-buildar" o container, pode utilizar o comando:
+
+```bash
+make build
+```
+
+
+# **Configurações**
 
 ## Configurações do Host
 
@@ -178,3 +199,9 @@ A saída do comando será algoo dessse tipo:
   }
 }
 ```
+
+# **Outras Formas de Instalar / Configurar o ElasticSearch**
+
+Existem diversas formas de instalar/configurar o ElasticSearch, caso você tenha interesse em instalar de outra forma, diferente do que foi feito nesse repositório nos arquivos [Dockerfile](./Dockerfile) e [docker-compose.yml](./docker-compose.yml).
+
+- [Tutorial de Instalação com o Docker](https://www.elastic.co/guide/en/elasticsearch/reference/7.17/docker.html)
