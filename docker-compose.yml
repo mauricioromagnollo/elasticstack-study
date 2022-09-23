@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  ubuntu_with_elastic:
+    build: .
+    container_name: ubuntu_with_elastic_container
+    hostname: docker
+    ports:
+      - '9200:9200'
+      - '5601:5601'
+    tty: true
