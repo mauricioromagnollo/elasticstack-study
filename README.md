@@ -54,7 +54,7 @@ Adicione a linha:
 vm.max_map_count=262144
 ```
 
-Depois, reinicie as configurações de configuração para ser aplicado:
+Depois, reinicie as configurações para ser aplicado:
 
 ```
 sudo sysctl -p
