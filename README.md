@@ -40,6 +40,28 @@ PS: Esse comando é para ser executado **na sua máquina** e não dentro do **co
 sudo sysctl -w vm.max_map_count=262144
 ```
 
+* Será necessário executar esse comando todas as vezes que você "reiniciar" o Host. Caso queira deixar esse valor setado permanentemente, siga os comandos:
+
+Abra o arquivo de configurações:
+
+```bash
+sudo vim /etc/sysctl.conf
+```
+
+Adicione a linha:
+
+```
+vm.max_map_count=262144
+```
+
+Depois, reinicie as configurações de configuração para ser aplicado:
+
+```
+sudo sysctl -p
+```
+
+
+
 ## Configurações do Container
 
 Agora vamos fazer as configurações do container.
