@@ -1,0 +1,2 @@
+files/elasticsearch/*
+!files/elasticsearch/elasticsearch.yml
