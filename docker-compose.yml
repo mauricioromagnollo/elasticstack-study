@@ -1,15 +1,54 @@
 version: '3'
 
 services:
-  ubuntu_with_elastic:
-    build: .
-    container_name: ubuntu_with_elastic_container
+# ================================
+# ELASTICSEARCH
+# ================================
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.6
+    container_name: elasticstack_study_elasticsearch
     hostname: docker
     ports:
-      - '9200:9200'
-      - '5601:5601'
+      - 9200:9200
+    environment:
+      - node.name=node-1
+      - cluster.name=es-docker-cluster
+      - discovery.seed_hosts=127.0.0.1
+      - cluster.initial_master_nodes=node-1
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
     volumes:
-      - .:/home/ubuntu
-      - ./files/bin:/home/ubuntu/bin
-    tty: true
-    entrypoint: .docker/entrypoint.sh
+      - .docker/elasticsearch:/usr/share/elasticsearch/elasticsearch-files
+      - _data_elasticsearch:/usr/share/elasticsearch/data
+    networks:
+      - elastic
+      
+# ================================
+# KIBANA
+# ================================
+  kibana:
+    image: docker.elastic.co/kibana/kibana:7.17.6
+    container_name: elasticstack_study_kibana
+    volumes:
+      - _data_kibana:/usr/share/kibana/config
+    environment:
+      SERVER_NAME: kibana.example.docker
+      ELASTICSEARCH_HOSTS: '["http://elasticsearch:9200"]'
+    ports:
+      - 5601:5601
+    networks:
+      - elastic
+    
+volumes:
+  _data_elasticsearch:
+    driver: local
+  _data_kibana:
+    driver: local
+
+networks:
+  elastic:
+    driver: bridge

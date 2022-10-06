@@ -1,2 +1,4 @@
-files/elasticsearch/*
-!files/elasticsearch/elasticsearch.yml
+# Docker
+.docker/_*
+
+_*
